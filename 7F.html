@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Rose Day Mishti ji 🌹</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #ffe4e1; /* Baby Pink */
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif; /* Clean font for the question */
+            text-align: center;
+        }
+
+        /* --- SCREEN 1: THE GAME --- */
+        #game-screen {
+            transition: opacity 1s ease-out;
+        }
+
+        h2 {
+            color: #d63384;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        .doors-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .door {
+            font-size: 80px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            user-select: none;
+        }
+
+        .door:hover {
+            transform: scale(1.1);
+        }
+
+        .door:active {
+            transform: scale(0.9);
+        }
+
+        /* --- SCREEN 2: THE REVEAL (Hidden initially) --- */
+        #reveal-screen {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* The Rose Animation */
+        .rose {
+            font-size: 50px; 
+            cursor: default;
+            margin-bottom: 20px;
+            /* Animation starts immediately when shown */
+            animation: comeCloser 4s ease-in-out forwards;
+        }
+
+        /* The Final Message */
+        .final-message {
+            font-size: 3rem; 
+            color: #d63384; 
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+            opacity: 0; 
+            margin-top: 50px;
+            
+            /* Animation: Waits 3s then fades in */
+            animation: showText 2s ease-in 3s forwards;
+        }
+
+        /* Animation Keyframes */
+        @keyframes comeCloser {
+            0% { opacity: 0; transform: scale(0.5); }
+            10% { opacity: 1; }
+            100% { opacity: 1; transform: scale(4); }
+        }
+
+        @keyframes showText {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="game-screen">
+        <h2>Guess behind which door the rose is? 😛</h2>
+        <div class="doors-container">
+            <div class="door" onclick="openDoor()">🚪</div>
+            <div class="door" onclick="openDoor()">🚪</div>
+            <div class="door" onclick="openDoor()">🚪</div>
+        </div>
+    </div>
+
+    <div id="reveal-screen">
+        <div class="rose">🌹</div>
+        <div class="final-message">Gulaab ko hi Gulaab ki pehchan hoti hai</div>
+    </div>
+
+    <script>
+        function openDoor() {
+            // 1. Fade out the game screen
+            const gameScreen = document.getElementById('game-screen');
+            gameScreen.style.opacity = '0';
+
+            // 2. Wait 1 second (for fade out), then switch screens
+            setTimeout(() => {
+                gameScreen.style.display = 'none';
+                
+                // Show the reveal screen
+                const revealScreen = document.getElementById('reveal-screen');
+                revealScreen.style.display = 'flex';
+                
+            }, 800);
+        }
+    </script>
+
+</body>
+</html>
